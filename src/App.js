@@ -1,25 +1,42 @@
-import logo from './logo.svg';
-import './App.css';
+// Import necessary modules from React library
+import React, { useEffect } from 'react';
 
+// Import components for routing from react-router-dom library
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
+// Import custom Navbar component
+import Navbar from './Components/Navbar/Navbar';
+import Landing_page from './Components/Landing_Page/LandingPage';
+
+// Function component for the main App
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+    // Render the main App component
+    return (
+        <div className="App">
+            {/* Set up BrowserRouter for routing */}
+            <BrowserRouter>
+                {/* Display the Navbar component */}
+                <Navbar/>
+
+                {/* Set up the Routes for different pages */}
+                <Routes>
+                        {/* Route for the Landing page */}
+                        <Route path="/" element={<Landing_page/>}/>
+
+                       {/* /!* Route for the Appointments page *!/*/}
+                       {/* <Route path="/appointments" element={<Appointments />} />*/}
+
+                       {/* /!* Route for the Sign Up page *!/*/}
+                       {/* <Route path="/signup" element={<SignUp />} />*/}
+
+                       {/* /!* Route for the Login page *!/*/}
+                       {/* <Route path="/login" element={<Login />} />*/}
+                </Routes>
+            </BrowserRouter>
+        </div>
+    );
 }
 
+// Export the App component as the default export
 export default App;
