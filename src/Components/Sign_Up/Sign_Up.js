@@ -1,4 +1,3 @@
-// Following code has been commented with appropriate comments for your reference.
 import React, { useState } from 'react';
 import './Sign_Up.css';
 import { Link, useNavigate } from 'react-router-dom';
@@ -26,7 +25,6 @@ const Sign_Up = () => {
         }
 
         try {
-            // API Call to register user
             const response = await fetch(`${API_URL}/api/auth/register`, {
                 method: "POST",
                 headers: {
@@ -120,4 +118,4 @@ const Sign_Up = () => {
     );
 }
 
-export default Sign_Up; // Export the Sign_Up component for use in other components
+export default Sign_Up;
