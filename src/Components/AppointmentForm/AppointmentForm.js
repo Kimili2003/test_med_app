@@ -1,25 +1,22 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 
 const AppointmentForm = ({ doctorName, doctorSpeciality, onSubmit }) => {
     const [name, setName] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
-    const [selectedSlot, setSelectedSlot] = useState(null);
-    const [dataOfAppointment, setDataOfAppointment] = useState('');
+    const [date, setDate] = useState('');
+    const [time, setTime] = useState('');
 
-    const handleSlotSelection = (slot) => {
-        setSelectedSlot(slot);
-    };
-
-    const handleFormSubmit = (e) => {
+    const handleSubmit = (e) => {
         e.preventDefault();
-        onSubmit({ name, phoneNumber });
+        onSubmit({ name, phoneNumber, date, time });
         setName('');
         setPhoneNumber('');
-        setDataOfAppointment('');
+        setDate('');
+        setTime('');
     };
 
     return (
-        <form onSubmit={handleFormSubmit} className="appointment-form">
+        <form onSubmit={handleSubmit} className="appointment-form">
             <div className="form-group">
                 <label htmlFor="name">Name:</label>
                 <input
@@ -41,12 +38,22 @@ const AppointmentForm = ({ doctorName, doctorSpeciality, onSubmit }) => {
                 />
             </div>
             <div className="form-group">
-                <label htmlFor="dataOfAppointment">Data of Appointment:</label>
+                <label htmlFor="date">Date:</label>
                 <input
                     type="date"
-                    id="dataOfAppointment"
-                    value={dataOfAppointment}
-                    onChange={(e) => setDataOfAppointment(e.target.value)}
+                    id="date"
+                    value={date}
+                    onChange={(e) => setDate(e.target.value)}
+                    required
+                />
+            </div>
+            <div className="form-group">
+                <label htmlFor="time">Time:</label>
+                <input
+                    type="time"
+                    id="time"
+                    value={time}
+                    onChange={(e) => setTime(e.target.value)}
                     required
                 />
             </div>
@@ -55,4 +62,4 @@ const AppointmentForm = ({ doctorName, doctorSpeciality, onSubmit }) => {
     );
 };
 
-export default AppointmentForm
+export default AppointmentForm;

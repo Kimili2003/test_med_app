@@ -19,13 +19,10 @@ function App() {
     // Render the main App component
     return (
         <div className="App">
-            {/* Set up BrowserRouter for routing */}
-            <BrowserRouter>
-                {/* Display the Navbar component */}
-                <Navbar/>
-
-                {/* Set up the Routes for different pages */}
-                <Routes>
+        <BrowserRouter>
+        <Navbar/>
+          <Notification>
+              <Routes>
                         {/* Route for the Landing page */}
                         <Route path="/" element={<Landing_page/>}/>
 
@@ -41,11 +38,9 @@ function App() {
                         {/*Route for the FindDoctor*/}
                         <Route path="/booking-consultation" element={<BookingConsultation />} />
 
-                        <Route path="/Notification" element={<Notification />} />
-
-
                 </Routes>
-            </BrowserRouter>
+            </Notification>
+        </BrowserRouter>
         </div>
     );
 }

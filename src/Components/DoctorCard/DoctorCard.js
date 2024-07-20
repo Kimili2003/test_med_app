@@ -9,6 +9,12 @@ const DoctorCard = ({ name, speciality, experience, ratings, profilePic }) => {
     const [showModal, setShowModal] = useState(false);
     const [appointments, setAppointments] = useState([]);
 
+    useEffect(() => {
+        const storedAppointments = JSON.parse(localStorage.getItem(name)) || [];
+        console.log(`Retrieved appointments for ${name}:`, storedAppointments);
+        setAppointments(storedAppointments);
+    }, [name]);
+
     const handleBooking = () => {
         setShowModal(true);
     };
@@ -16,6 +22,7 @@ const DoctorCard = ({ name, speciality, experience, ratings, profilePic }) => {
     const handleCancel = (appointmentId) => {
         const updatedAppointments = appointments.filter((appointment) => appointment.id !== appointmentId);
         setAppointments(updatedAppointments);
+        localStorage.setItem(name, JSON.stringify(updatedAppointments));
     };
 
     const handleFormSubmit = (appointmentData) => {
@@ -24,8 +31,12 @@ const DoctorCard = ({ name, speciality, experience, ratings, profilePic }) => {
             ...appointmentData,
         };
         const updatedAppointments = [...appointments, newAppointment];
+        console.log('Updated Appointments before setting state:', updatedAppointments);
         setAppointments(updatedAppointments);
+        localStorage.setItem(name, JSON.stringify(updatedAppointments));
+        localStorage.setItem('doctorData', JSON.stringify({ name, speciality }));
         setShowModal(false);
+        window.location.reload(); // Corrected typo here
     };
 
     return (
@@ -83,6 +94,8 @@ const DoctorCard = ({ name, speciality, experience, ratings, profilePic }) => {
                                         <div className="bookedInfo" key={appointment.id}>
                                             <p>Name: {appointment.name}</p>
                                             <p>Phone Number: {appointment.phoneNumber}</p>
+                                            <p>Date: {appointment.date}</p>
+                                            <p>Time: {appointment.time}</p>
                                             <button onClick={() => handleCancel(appointment.id)}>Cancel Appointment</button>
                                         </div>
                                     ))}
