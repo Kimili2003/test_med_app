@@ -11,6 +11,7 @@ import Sign_Up from "./Components/Sign_Up/Sign_Up";
 import Login from "./Components/Login/Login";
 import InstantConsultation from "./Components/InstantConsultationBooking/InstantConsultation";
 import BookingConsultation from "./Components/BookingConsultation/BookingConsultation";
+import Notification from "./Components/Notification/Notification";
 
 // Function component for the main App
 function App() {
@@ -39,6 +40,8 @@ function App() {
 
                         {/*Route for the FindDoctor*/}
                         <Route path="/booking-consultation" element={<BookingConsultation />} />
+
+                        <Route path="/Notification" element={<Notification />} />
 
 
                 </Routes>
