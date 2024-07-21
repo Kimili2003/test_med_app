@@ -16,7 +16,7 @@ const FindDoctorSearch = ({ onSearch }) => {
         setSearchDoctor(speciality);
         setDoctorResultHidden(true);
         onSearch(speciality); // Trigger the search callback
-        navigate(`/booking-consultation?speciality=${speciality}`);
+        navigate(`/search/doctors?speciality=${speciality}`);
     };
 
     const handleInputChange = (e) => {
