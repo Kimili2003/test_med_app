@@ -1,12 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
+import ProfileCard from '../ProfileCard/ProfileCard';
 
 const Navbar = () => {
     const [click, setClick] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
+    const [showProfileDropdown, setShowProfileDropdown] = useState(false);
 
     const handleClick = () => setClick(!click);
 
@@ -18,7 +20,6 @@ const Navbar = () => {
         localStorage.removeItem("doctorData");
         setIsLoggedIn(false);
 
-        // Remove the reviewFormData from local storage
         for (let i = 0; i < localStorage.length; i++) {
             const key = localStorage.key(i);
             if (key.startsWith("reviewFormData_")) {
@@ -35,7 +36,7 @@ const Navbar = () => {
         if (storedEmail) {
             setIsLoggedIn(true);
             setEmail(storedEmail);
-            setUsername(storedEmail.split('@')[0]); // Extract username from email
+            setUsername(storedEmail.split('@')[0]);
         }
     }, []);
 
@@ -64,12 +65,19 @@ const Navbar = () => {
                     <Link to="/reviews">Reviews</Link>
                 </li>
                 <li className="link">
-                    <Link to="/instant-consultation">instant-consultation</Link>
+                    <Link to="/instant-consultation">Instant Consultation</Link>
                 </li>
                 {isLoggedIn ? (
                     <>
                         <li className="link">
-                            <span>Welcome, {username}</span>
+                            <span onClick={() => setShowProfileDropdown(!showProfileDropdown)}>
+                                Welcome, {username}
+                            </span>
+                            {showProfileDropdown && (
+                                <div className="profile-dropdown">
+                                    <ProfileCard />
+                                </div>
+                            )}
                         </li>
                         <li className="link">
                             <button className="btn2" onClick={handleLogout}>

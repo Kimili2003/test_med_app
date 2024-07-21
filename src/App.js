@@ -13,6 +13,8 @@ import InstantConsultation from "./Components/InstantConsultationBooking/Instant
 import BookingConsultation from "./Components/BookingConsultation/BookingConsultation";
 import Notification from "./Components/Notification/Notification";
 import ReviewForm from "./Components/ReviewForm/ReviewForm";
+import ProfileForm from './Components/ProfileCard/ProfileForm';
+
 
 // Function component for the main App
 function App() {
@@ -40,6 +42,8 @@ function App() {
                         <Route path="//search/doctors" element={<BookingConsultation />} />
 
                         <Route path="/reviews" element={<ReviewForm />} />
+
+                        <Route path="/profile" component={ProfileForm} />
 
                 </Routes>
             </Notification>
