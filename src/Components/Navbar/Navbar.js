@@ -1,14 +1,13 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import "./Navbar.css";
-import ProfileCard from '../ProfileCard/ProfileCard';
+import ProfileCard from "../ProfileCard/ProfileCard";
 
 const Navbar = () => {
     const [click, setClick] = useState(false);
     const [isLoggedIn, setIsLoggedIn] = useState(false);
     const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
-    const [showProfileDropdown, setShowProfileDropdown] = useState(false);
 
     const handleClick = () => setClick(!click);
 
@@ -69,20 +68,16 @@ const Navbar = () => {
                 </li>
                 {isLoggedIn ? (
                     <>
-                        <li className="link">
-                            <span onClick={() => setShowProfileDropdown(!showProfileDropdown)}>
-                                Welcome, {username}
-                            </span>
-                            {showProfileDropdown && (
-                                <div className="profile-dropdown">
-                                    <ProfileCard />
-                                </div>
-                            )}
+                        <li className="link welcome-user">
+                            <span>Welcome, {username}</span>
+                            <ul className="dropdown-menu">
+                                {/*<ProfileCard/>*/}
+                                <li><Link to="/profile">Profile</Link></li>
+                                <li><Link to="/report">Report</Link></li>
+                            </ul>
                         </li>
                         <li className="link">
-                            <button className="btn2" onClick={handleLogout}>
-                                Logout
-                            </button>
+                            <button onClick={handleLogout} className="btn2">Logout</button>
                         </li>
                     </>
                 ) : (

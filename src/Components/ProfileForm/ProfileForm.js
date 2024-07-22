@@ -1,11 +1,12 @@
-// Following code has been commented with appropriate comments for your reference.
-// Import necessary modules from React and other files
+// src/Components/ProfileCard/ProfileForm.js
+
 import React, { useEffect, useState } from "react";
 import { API_URL } from "../../config";
 import { useNavigate } from "react-router-dom";
+import "./ProfileForm.css";
 
 // Define a Function component called ProfileForm
-const ProfileForm = () => {
+const ProfileForm = ({ onClose }) => { // Ensure onClose is included in the props
     // Set up state variables using the useState hook
     const [userDetails, setUserDetails] = useState({});
     const [updatedDetails, setUpdatedDetails] = useState({});
@@ -136,7 +137,6 @@ const ProfileForm = () => {
                     </label>
                     <label>
                         <p><b>Email:</b> {userDetails.email}</p>
-                        <p><b>Phone:</b> {userDetails.phone}</p>
                         <input
                             type="email"
                             name="email"
@@ -146,11 +146,13 @@ const ProfileForm = () => {
                     </label>
                     {/* Create similar logic for displaying and editing name and phone from userDetails */}
                     <button type="submit">Save</button>
+                    <button type="button" onClick={onClose}>Close</button>
                 </form>
             ) : (
                 <div className="profile-details">
                     <h1>Welcome, {userDetails.name}</h1>
-                    {/* Implement code to display and allow editing of phone and email similar to above */}
+                    <p>Email: {userDetails.email}</p>
+                    <p>Phone: {userDetails.phone}</p>
                     <button onClick={handleEdit}>Edit</button>
                 </div>
             )}

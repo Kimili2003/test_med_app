@@ -12,7 +12,6 @@ const DoctorCard = ({ name, speciality, experience, ratings, profilePic }) => {
     useEffect(() => {
         const storedAppointments = JSON.parse(localStorage.getItem(name)) || [];
         setAppointments(storedAppointments);
-        console.log(`Loaded appointments for ${name} from localStorage:`, storedAppointments);
     }, [name]);
 
     const handleBooking = () => {
@@ -23,7 +22,6 @@ const DoctorCard = ({ name, speciality, experience, ratings, profilePic }) => {
         const updatedAppointments = appointments.filter((appointment) => appointment.id !== appointmentId);
         setAppointments(updatedAppointments);
         localStorage.setItem(name, JSON.stringify(updatedAppointments));
-        console.log(`Updated appointments after cancellation for ${name}:`, updatedAppointments);
     };
 
     const handleFormSubmit = (appointmentData) => {
@@ -37,9 +35,6 @@ const DoctorCard = ({ name, speciality, experience, ratings, profilePic }) => {
         const existingAppointments = JSON.parse(localStorage.getItem(name)) || [];
         const updatedAppointments = [...existingAppointments, newAppointment];
 
-        console.log(`Existing Appointments for ${name}:`, existingAppointments);
-        console.log('New Appointment:', newAppointment);
-        console.log('Updated Appointments:', updatedAppointments);
 
         setAppointments(updatedAppointments);
         localStorage.setItem(name, JSON.stringify(updatedAppointments));
