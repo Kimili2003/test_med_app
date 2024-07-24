@@ -1,21 +1,20 @@
-# Base image
+# Use official `Node.js` image as the base
 FROM node:14
 
-# Set working directory
+# Set the working directory in the container
 WORKDIR /usr/src/app
 
-# Install dependencies
+# Copy package.json and package-lock.json to container
 COPY package*.json ./
+
+# Install dependencies
 RUN npm install
 
-# Copy app files
+# Copy rest of the application to container
 COPY . .
 
-# Set environment variables
-ENV API_URL=https://lijinfeng021-8181.theiadockernext-0-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai
-
-# Expose port
+# Expose the port your app runs on
 EXPOSE 3000
 
-# Start the app
+# Command to run your application
 CMD ["npm", "start"]

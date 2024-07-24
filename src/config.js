@@ -1,4 +1,5 @@
-export const API_URL = "https://lijinfeng021-8181.theiadockernext-0-labs-prod-theiak8s-4-tor01.proxy.cognitiveclass.ai";
+export const API_URL = "<add your server side url>";
+
 console.log(
     "API_URL :",
     API_URL
